@@ -1,0 +1,9 @@
+fastapi
+uvicorn
+numpy
+onnxruntime
+onnx
+opencv-python-headless
+pillow
+pydantic
+PyYAML==6.0.2
