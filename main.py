@@ -31,17 +31,6 @@ H          = cfg['height']    # 64
 W_MIN      = cfg['width']     # 128
 VOCAB      = list(cfg['vocab'])
 BLANK_IDX  = len(VOCAB)
-
-# ---------- 2. تكميم ONNX إلى INT8 إن لزم ----------
-quantized_model = MODEL_PATH.replace('.onnx', '_int8.onnx')
-if not os.path.exists(quantized_model):
-    quantize_dynamic(
-        MODEL_PATH,
-        quantized_model,
-        weight_type=QuantType.QInt8,
-        op_types_to_quantize=['MatMul', 'Gemm']
-    )
-
 # ---------- 3. إعداد جلسة ONNX Runtime ثابتة ----------
 opts = ort.SessionOptions()
 opts.graph_optimization_level = ort.GraphOptimizationLevel.ORT_ENABLE_ALL
